@@ -1,0 +1,30 @@
+<launch>
+        <!-- Spawn in robot in gazebo world01 -->
+    <include file="$(find m2wr_description)/launch/world01.launch" />
+
+    <include file="$(find m2wr_description)/launch/apm.launch"/>
+
+    <!-- launch gcs software - QGroundControl -->
+    <node name="QGroundControl" pkg="qgroundcontrol" type="QGroundControl.AppImage" 
+        output="screen" launch-prefix="gnome-terminal --tab --command"/>
+
+
+        <!-- Joy to Twist converter -->
+    <!-- <node name="Joy2Twist" pkg="m2wr_description" type="joyToTwist.py"/> -->
+     
+        <!-- MavrosOutput to Twist converter -->
+    <node name="mavros2Twist" pkg="m2wr_description" type="mavrosToTwist.py"
+        output="screen" launch-prefix="gnome-terminal --tab --command"/>
+
+            <!-- Controller input node -->
+    <!-- <node respawn="true" pkg="joy" type="joy_node" name="Joy" >
+            <param name="dev" type="string" value="/dev/input/js1" />
+    </node> -->
+
+            <!-- Keyboard input (Twist) -->
+    <!-- <node name="teleopTwistKeyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py"/> -->
+
+        <!-- rqt testing nodes (Camera and nodes) -->
+    <node name="rqt_graph" pkg="rqt_graph" type="rqt_graph"/>
+    <node name="rqt" pkg="rqt_gui" type="rqt_gui"/>
+</launch>
