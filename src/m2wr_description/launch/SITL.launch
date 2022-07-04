@@ -1,6 +1,6 @@
 <launch>
         <!-- Spawn in robot in gazebo world01 -->
-    <include file="$(find m2wr_description)/launch/world01.launch" />
+    <include file="$(find m2wr_description)/launch/spawn.launch" />
 
     <include file="$(find m2wr_description)/launch/apm.launch"/>
 
